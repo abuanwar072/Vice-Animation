@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../../../core/core.dart';
@@ -73,8 +75,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
             ),
             SizedBox(height: 12),
-            Spacer(),
-            // TODO: InfiniteDraggableSlider
+            Expanded(
+              child: Transform.translate(
+                offset: Offset(-70, 30),
+                child: Transform.scale(
+                  scale: 0.6,
+                  child: Transform.rotate(
+                    angle: -pi * 0.1, // 18 degree
+                    child: MagazineCoverImage(
+                      magazine: Magazine.fakeMagazinesValues[0],
+                    ),
+                  ),
+                ),
+              ),
+            ),
             SizedBox(height: 52),
             SizedBox(
               height: 140,
