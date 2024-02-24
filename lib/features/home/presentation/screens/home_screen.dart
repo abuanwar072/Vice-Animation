@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/core.dart';
 import '../../../magazines_details/presentation/screens/magazines_details_screen.dart';
 import '../widgets/all_editions_list_view.dart';
+import '../widgets/infinite_dragable_slider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -76,17 +77,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             ),
             SizedBox(height: 12),
             Expanded(
-              child: Transform.translate(
-                offset: Offset(-70, 30),
-                child: Transform.scale(
-                  scale: 0.6,
-                  child: Transform.rotate(
-                    angle: -pi * 0.1, // 18 degree
-                    child: MagazineCoverImage(
-                      magazine: Magazine.fakeMagazinesValues[0],
-                    ),
-                  ),
-                ),
+              child: InfiniteDragableSlider(
+                iteamCount: Magazine.fakeMagazinesValues.length,
+                itemBuilder: (context, index) => MagazineCoverImage(
+                    magazine: Magazine.fakeMagazinesValues[index]),
               ),
             ),
             SizedBox(height: 52),
