@@ -21,6 +21,7 @@ class InfiniteDragableSlider extends StatefulWidget {
 }
 
 class _InfiniteDragableSliderState extends State<InfiniteDragableSlider> {
+  final double defaultAngle18Dgree = pi * 0.1;
   Offset getOffser(int stackIndex) {
     return {
           0: Offset(0, 30),
@@ -29,6 +30,22 @@ class _InfiniteDragableSliderState extends State<InfiniteDragableSlider> {
         }[stackIndex] ??
         Offset(0, 0);
   }
+
+  double getAngle(int stackIndex) =>
+      {
+        0: 0.0,
+        1: -defaultAngle18Dgree,
+        2: defaultAngle18Dgree,
+      }[stackIndex] ??
+      0.0;
+
+  double getScal(int stackIndex) =>
+      {
+        0: 0.6,
+        1: 0.9,
+        2: 0.95,
+      }[stackIndex] ??
+      1.0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +56,9 @@ class _InfiniteDragableSliderState extends State<InfiniteDragableSlider> {
           return Transform.translate(
             offset: getOffser(stackIndex),
             child: Transform.scale(
-              scale: 0.6,
+              scale: getScal(stackIndex),
               child: Transform.rotate(
-                angle: -pi * 0.1, // 18 degree
+                angle: getAngle(stackIndex),
                 child: widget.itemBuilder(context, stackIndex),
               ),
             ),
